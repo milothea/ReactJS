@@ -1,0 +1,6 @@
+# system files
+tmp
+.DS_Store
+
+# IDEA files
+.idea
