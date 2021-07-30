@@ -1,6 +1,6 @@
 import './Card.css';
 
-function Card(props) {
+const Card = (props) => {
   return (
     <div className="container__card" id={props.id}>
       <h2 className="card__heading">{props.heading}</h2>

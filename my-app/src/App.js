@@ -4,7 +4,7 @@ import Header from './components/UI/Header';
 import Container from './components/UI/Container';
 import Card from './components/UI/Card';
 
-function App() {
+const App = () => {
   return (
     <div className='react-app'>
       <Header title='header' />
