@@ -6,13 +6,13 @@ const cardsData = [
   },
   {
     id: 2,
-    heading: 'lorem ipsum',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor nisi et lacus rutrum.'
+    heading: 'Muspi merol',
+    text: 'Murtur sucal te isin rotcua euqsetnelle. Tile gnicsipida rutetcesnoc, tema tis rolod muspi merol.'
   },
   {
     id: 3,
-    heading: 'lorem ipsum',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor nisi et lacus rutrum.'
+    heading: 'Bla-bla-bla',
+    text: 'Bla-bla-bla, bla-bla-bla. Bla-bla-bla.'
   },
 
 ];
