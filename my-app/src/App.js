@@ -9,7 +9,7 @@ const App = () => {
     <div className='react-app'>
       <Header title='header' />
       <Container className='container'>
-        {CardsData.map(data => <Card heading={data.heading} text={data.text} id={data.id}/> )}
+        {CardsData.map(data => <Card key={data.id} heading={data.heading} text={data.text} id={data.id} /> )}
       </Container>
     </div>
   );
