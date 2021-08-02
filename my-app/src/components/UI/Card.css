@@ -1,0 +1,21 @@
+.container__card {
+    width: 15rem;
+    height: 10rem;
+    padding: 1rem;
+    text-align: left;
+    border: .15rem solid #f7e773;
+    border-radius: .5rem;
+    background-color: #ffffff;
+    box-shadow: 0 0 .2rem rgba(94, 94, 94, .2);
+}
+
+.card__heading,
+.card__text {
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
+.card__heading {
+    border-bottom: .063rem solid #f7e773;
+    line-height: 2rem;
+}
