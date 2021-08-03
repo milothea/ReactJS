@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Container from './Container';
 import Checkbox from './Checkbox';
 import './Card.css';
 
@@ -15,13 +14,13 @@ const Card = (props) => {
   }
 
   return (
-    <Container className={className} id={props.id}>
-      <Container className='container heading'>
+    <div className={className} id={props.id}>
+      <div className='container heading'>
         <h2 className="card__heading">{props.heading}</h2>
         <Checkbox className='card__checkbox' type='checkbox' onChange={checkboxHandler} />
-      </Container>
+      </div>
       <p className="card__text">{props.text}</p>
-    </Container>
+    </div>
   );
 }
 
