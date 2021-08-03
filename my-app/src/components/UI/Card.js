@@ -4,13 +4,7 @@ import './Card.css';
 const Card = (props) => {
   const [checked, setChecked] = useState(false);
 
-  const checkboxHandler = (event) => {
-    if (event.target.checked) {
-      setChecked(true);
-    } else {
-      setChecked(false);
-    }
-  }
+  const checkboxHandler = () => setChecked(!checked);
 
   return (
     <div className={'container card' + (checked ? ' active' : '')} id={props.id}>
