@@ -2,18 +2,18 @@ import { useState } from 'react';
 import './Card.css';
 
 const Card = (props) => {
-  const [className, setClassName] = useState('container card');
+  const [checked, setChecked] = useState(false);
 
-  function checkboxHandler(event) {
+  const checkboxHandler = (event) => {
     if (event.target.checked) {
-      setClassName('container card active');
+      setChecked(true);
     } else {
-      setClassName('container card');
+      setChecked(false);
     }
   }
 
   return (
-    <div className={className} id={props.id}>
+    <div className={'container card' + (checked ? ' active' : '')} id={props.id}>
       <div className='container heading'>
         <h2 className="card__heading">{props.heading}</h2>
         <input className='card__checkbox' type='checkbox' onChange={checkboxHandler} />
