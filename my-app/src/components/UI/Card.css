@@ -1,4 +1,17 @@
-.container__card {
+.card__heading,
+.card__text {
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
+.card__heading {
+    display: block;
+    width: 12rem;
+    border-bottom: .063rem solid #f7e773;
+    line-height: 2rem;
+}
+
+.container.card {
     width: 15rem;
     height: 10rem;
     padding: 1rem;
@@ -9,13 +22,15 @@
     box-shadow: 0 0 .2rem rgba(94, 94, 94, .2);
 }
 
-.card__heading,
-.card__text {
-    padding: .5rem;
-    text-transform: capitalize;
+.container.card.active {
+    background-color: #333;
+    color: #ffffff;
 }
 
-.card__heading {
-    border-bottom: .063rem solid #f7e773;
-    line-height: 2rem;
+.container.heading {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0;
 }

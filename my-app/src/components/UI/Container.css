@@ -1,7 +1,0 @@
-.container {
-    height: calc(100vh - 3rem);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 1.5rem;
-}
