@@ -18,15 +18,14 @@
 
 .container.heading {
     width: 100%;
-    height: 3rem;
+    height: 2.5rem;
     display: flex;
     flex-wrap: nowrap;
     padding: 0;
     border-bottom: .063rem solid #f7e773;
 }
 
-.card__heading,
-.card__text {
+.card__heading {
     padding: .5rem;
     text-transform: capitalize;
 }
@@ -34,7 +33,10 @@
 .card__heading {
     display: block;
     width: 12rem;
+    height: auto;
+    font-size: 1.1rem;
     line-height: 2rem;
+    word-wrap: break-word;
 }
 
 .editmode .card__heading,
@@ -46,14 +48,17 @@
     resize: none;
 }
 
-.editmode .card__heading {
-  height: 1.1rem;
-  margin-top: .4rem;
+.editmode .card__heading { height: 1rem; }
+
+.card__checkbox { margin-top: .8rem; }
+
+@-moz-document url-prefix() {
+    .card__checkbox { margin-top: 0; }
 }
 
 .card__edit,
 .card__submit,
-.card__cancel { height: 3rem; }
+.card__cancel { height: 2.5rem; }
 
 .card__edit,
 .card__submit { padding-right: .5rem; }
@@ -75,6 +80,7 @@
     display: block;
     width: 14rem;
     height: 5rem;
+    font-size: .8rem;
     word-wrap: break-word;
 }
 
