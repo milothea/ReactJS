@@ -34,23 +34,38 @@ const Card = (props) => {
     return (
       <div className='container card editmode' id={props.id}>
         <div className='container heading'>
-          <input className='card__heading' id='heading' value={headingValue} onChange={inputHandler} maxLength='15'/>
-          <HiOutlineCheck className='card__submit' onClick={submitHandler} />
-          <HiOutlineX className='card__cancel' onClick={cancelHandler} />
+          <input className='card__heading'
+                 id='heading'
+                 value={headingValue}
+                 onChange={inputHandler}
+                 maxLength='15'/>
+          <HiOutlineCheck className='card__submit'
+                          onClick={submitHandler} />
+          <HiOutlineX className='card__cancel'
+                      onClick={cancelHandler} />
         </div>
-        <textarea className="card__text" maxLength='140' onChange={inputHandler} value={textValue}/>
+        <textarea className='card__text'
+                  onChange={inputHandler}
+                  value={textValue}
+                  maxLength='140' />
       </div>
     );
   }
 
   return (
-    <div className={`container card${(checked && !isEditMode) ? ' active' : ''}`} id={props.id}>
+    <div className={`container card${(checked && !isEditMode) ? ' active' : ''}`}
+         id={props.id}>
       <div className='container heading'>
         <h2 className='card__heading'>{defaultHeading}</h2>
-        <HiOutlinePencil className='card__edit' fill='red' onClick={editHandler} />
-        <input className='card__checkbox' type='checkbox' onChange={checkboxHandler} value={checked} />
+        <HiOutlinePencil className='card__edit'
+                         fill='red'
+                         onClick={editHandler} />
+        <input className='card__checkbox'
+               type='checkbox'
+               onChange={checkboxHandler}
+               value={checked} />
       </div>
-     <p className="card__text">{defaultText}</p>
+     <p className='card__text'>{defaultText}</p>
     </div>
   );
 }
