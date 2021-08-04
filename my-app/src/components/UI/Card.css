@@ -1,16 +1,3 @@
-.card__heading,
-.card__text {
-    padding: .5rem;
-    text-transform: capitalize;
-}
-
-.card__heading {
-    display: block;
-    width: 12rem;
-    border-bottom: .063rem solid #f7e773;
-    line-height: 2rem;
-}
-
 .container.card {
     width: 15rem;
     height: 10rem;
@@ -27,10 +14,71 @@
     color: #ffffff;
 }
 
+.container.card.editmode { background-color: #eeedeb; }
+
 .container.heading {
     width: 100%;
     height: 3rem;
     display: flex;
     flex-wrap: nowrap;
     padding: 0;
+    border-bottom: .063rem solid #f7e773;
+}
+
+.card__heading,
+.card__text {
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
+.card__heading {
+    display: block;
+    width: 12rem;
+    line-height: 2rem;
+}
+
+.editmode .card__heading,
+.editmode .card__text {
+    background-color: #fffdf6;
+    border: .1rem solid #959595;
+    border-radius: .15rem;
+    color: #656565;
+    resize: none;
+}
+
+.editmode .card__heading {
+  height: 1.1rem;
+  margin-top: .4rem;
+}
+
+.card__edit,
+.card__submit,
+.card__cancel { height: 3rem; }
+
+.card__edit,
+.card__submit { padding-right: .5rem; }
+
+.card__edit {
+    color: #656565;
+    fill: #f7e773;
+}
+
+.container.card.active .card__edit { color: #999999; }
+
+.card__edit:hover,
+.card__submit:hover,
+.card__cancel:hover { cursor: pointer; }
+
+.card__edit:hover { fill: #e0a7f7; }
+
+.card__text {
+    display: block;
+    width: 14rem;
+    height: 5rem;
+    word-wrap: break-word;
+}
+
+.editmode .card__text {
+    width: 14rem;
+    height: 5rem;
 }
