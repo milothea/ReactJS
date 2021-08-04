@@ -39,6 +39,12 @@
     word-wrap: break-word;
 }
 
+.card__heading,
+.card__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .editmode .card__heading,
 .editmode .card__text {
     background-color: #fffdf6;
