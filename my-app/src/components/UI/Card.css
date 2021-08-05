@@ -14,8 +14,6 @@
     color: #ffffff;
 }
 
-.container.card.editmode { background-color: #eeedeb; }
-
 .container.heading {
     width: 100%;
     height: 2.5rem;
@@ -41,26 +39,7 @@
 
 .card__heading,
 .card__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.editmode .card__heading,
-.editmode .card__text {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    padding: .4rem;
-    background-color: #f9f8f7;
-    border: .1rem solid transparent;
-    border-radius: .15rem;
-    color: #656565;
-    resize: none;
-}
-
-.editmode .card__heading {
-    height: 1rem;
-    font-weight: 700;
+    overflow: auto;
 }
 
 .card__checkbox { margin-top: .6rem; }
@@ -88,14 +67,38 @@
 .card__text {
     display: block;
     width: 14rem;
-    height: 5rem;
+    height: 7.5rem;
     font-size: .8rem;
     word-wrap: break-word;
+    padding-top: .5rem;
+}
+
+/* EDITMODE */
+.container.card.editmode { background-color: #eeedeb; }
+
+.editmode .card__heading,
+.editmode .card__text {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    padding: .4rem;
+    background-color: #f9f8f7;
+    border: .1rem solid transparent;
+    border-radius: .15rem;
+    color: #656565;
+    resize: none;
+}
+
+.editmode .card__heading {
+    height: 1rem;
+    font-weight: 700;
 }
 
 .editmode .card__text {
     width: 14rem;
-    height: 5rem;
+    height: 7rem;
+    padding-top: .2rem;
+    margin-top: .2rem;
 }
 
 /* Styles for correct view in Mozilla Firefox */
