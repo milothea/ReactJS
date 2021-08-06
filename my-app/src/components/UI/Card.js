@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiOutlineCheck, HiOutlinePencil, HiOutlineX } from 'react-icons/hi';
 import './Card.css';
 
@@ -28,7 +28,21 @@ const Card = (props) => {
         setTextInput(defaultText);
     };
 
-    return isEditMode ? (
+    if (props['data-view-mode'] && isEditMode) cancelHandler();
+
+    return props['data-view-mode'] ? (
+            <div className={`container card${checked ? ' active' : ''}`}
+                 id={props.id}>
+                <div className='container heading'>
+                    <h2 className='card__heading'>{defaultHeading}</h2>
+                    <input className='card__checkbox'
+                           type='checkbox'
+                           onChange={checkboxHandler}
+                           checked={checked} />
+                </div>
+                <p className='card__text'>{defaultText}</p>
+            </div>
+        ) : isEditMode ? (
         <div className='container card editmode' id={props.id}>
             <div className='container heading'>
                 <input className='card__heading'
@@ -57,7 +71,7 @@ const Card = (props) => {
                 <input className='card__checkbox'
                        type='checkbox'
                        onChange={checkboxHandler}
-                       value={checked} />
+                       checked={checked} />
             </div>
             <p className='card__text'>{defaultText}</p>
         </div>
