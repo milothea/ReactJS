@@ -28,21 +28,11 @@ const Card = (props) => {
         setTextInput(defaultText);
     };
 
-    if (props['data-view-mode'] && isEditMode) cancelHandler();
+    useEffect(() => {
+        if (props['data-isDisableMode'] && isEditMode) cancelHandler();
+    });
 
-    return props['data-view-mode'] ? (
-            <div className={`container card${checked ? ' active' : ''}`}
-                 id={props.id}>
-                <div className='container heading'>
-                    <h2 className='card__heading'>{defaultHeading}</h2>
-                    <input className='card__checkbox'
-                           type='checkbox'
-                           onChange={checkboxHandler}
-                           checked={checked} />
-                </div>
-                <p className='card__text'>{defaultText}</p>
-            </div>
-        ) : isEditMode ? (
+    return isEditMode ? (
         <div className='container card editmode' id={props.id}>
             <div className='container heading'>
                 <input className='card__heading'
@@ -65,9 +55,13 @@ const Card = (props) => {
              id={props.id}>
             <div className='container heading'>
                 <h2 className='card__heading'>{defaultHeading}</h2>
-                <HiOutlinePencil className='card__edit'
-                                 fill='red'
-                                 onClick={editHandler} />
+                { !props.isDisableMode ? (
+                    <HiOutlinePencil className='card__edit'
+                                     fill='red'
+                                     onClick={editHandler} />
+                    ) : ''
+                }
+
                 <input className='card__checkbox'
                        type='checkbox'
                        onChange={checkboxHandler}

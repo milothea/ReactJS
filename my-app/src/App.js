@@ -24,7 +24,7 @@ const App = () => {
                         heading={data.heading}
                         text={data.text}
                         id={data.id}
-                        data-view-mode={checked}/>)
+                        isDisableMode={checked}/>)
           })
         }
       </div>
