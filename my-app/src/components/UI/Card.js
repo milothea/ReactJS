@@ -29,8 +29,8 @@ const Card = (props) => {
     };
 
     useEffect(() => {
-        if (props.isDisableMode && isEditMode) cancelHandler();
-    });
+        cancelHandler();
+    }, [props.isDisableMode]);
 
     return isEditMode ? (
         <div className='container card editmode' id={props.id}>
