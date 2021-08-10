@@ -5,10 +5,32 @@
     background-color: #f6f4ec;
 }
 
-.container {
-    height: calc(100vh - 3rem);
+.cards-container {
+    width: 80%;
+    min-height: calc(100vh - 9.2rem);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 1.5rem;
+    margin: 0 auto;
+}
+
+.disable-mode-control {
+    height: 1.2rem;
+    margin-top: 2rem;
+    margin-left: 12%;
+
+}
+
+.dm-controller__label {
+    color: #333333;
+    padding-left: 1rem;
+}
+
+#dm-controller:hover { cursor: pointer; }
+
+#dm-controller:checked ~ .dm-controller__label {
+    font-weight: 800;
+    color: #f7e773;
+    text-shadow: -.02rem 0 .2rem #333333;
 }

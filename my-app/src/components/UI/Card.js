@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiOutlineCheck, HiOutlinePencil, HiOutlineX } from 'react-icons/hi';
 import './Card.css';
 
@@ -28,6 +28,10 @@ const Card = (props) => {
         setTextInput(defaultText);
     };
 
+    useEffect(() => {
+        cancelHandler();
+    }, [props.isDisableMode]);
+
     return isEditMode ? (
         <div className='container card editmode' id={props.id}>
             <div className='container heading'>
@@ -51,13 +55,17 @@ const Card = (props) => {
              id={props.id}>
             <div className='container heading'>
                 <h2 className='card__heading'>{defaultHeading}</h2>
-                <HiOutlinePencil className='card__edit'
-                                 fill='red'
-                                 onClick={editHandler} />
+                { !props.isDisableMode ? (
+                    <HiOutlinePencil className='card__edit'
+                                     fill='red'
+                                     onClick={editHandler} />
+                    ) : ''
+                }
+
                 <input className='card__checkbox'
                        type='checkbox'
                        onChange={checkboxHandler}
-                       value={checked} />
+                       checked={checked} />
             </div>
             <p className='card__text'>{defaultText}</p>
         </div>
