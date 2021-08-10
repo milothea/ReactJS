@@ -29,7 +29,7 @@ const Card = (props) => {
     };
 
     useEffect(() => {
-        if (props['data-isDisableMode'] && isEditMode) cancelHandler();
+        if (props.isDisableMode && isEditMode) cancelHandler();
     });
 
     return isEditMode ? (

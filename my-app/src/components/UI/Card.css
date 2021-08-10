@@ -10,9 +10,9 @@
     box-shadow: 0 0 .2rem rgba(94, 94, 94, .2);
 }
 
-.viewmode .container.card { background-color: #fbf7d8; }
+.disable-mode .container.card { background-color: #fbf7d8; }
 
-.viewmode .card__heading { width: 13.2rem; }
+.disable-mode .card__heading { width: 13.2rem; }
 
 .container.card.editmode { background-color: #eeedeb; }
 

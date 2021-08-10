@@ -15,21 +15,21 @@
     margin: 0 auto;
 }
 
-.viewmode-control {
+.disable-mode-control {
     height: 1.2rem;
     margin-top: 2rem;
     margin-left: 12%;
 
 }
 
-.vm-controller__label {
+.dm-controller__label {
     color: #333333;
     padding-left: 1rem;
 }
 
-#vm-controller:hover { cursor: pointer; }
+#dm-controller:hover { cursor: pointer; }
 
-#vm-controller:checked ~ .vm-controller__label {
+#dm-controller:checked ~ .dm-controller__label {
     font-weight: 800;
     color: #f7e773;
     text-shadow: -.02rem 0 .2rem #333333;
