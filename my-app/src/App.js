@@ -26,7 +26,6 @@ const App = () => {
     const [isDisableMode, setIsDisableMode] = useState(false);
     const [cardsData, setCardsData] = useState(CardsData);
     const [activeCardsId, setActiveCardsId] = useState([]);
-    let selectedCards;
 
     const checkboxHandler = () => setIsDisableMode(prevState => !prevState);
 
@@ -42,10 +41,6 @@ const App = () => {
             setActiveCardsId (prevIdArr => prevIdArr.filter(item => item !== id));
         }
     }
-
-    useEffect(() => {
-        selectedCards = activeCardsId;
-    }, [activeCardsId]);
 
     return (
         <div className='react-app'>
