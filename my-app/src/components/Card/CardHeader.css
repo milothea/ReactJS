@@ -1,0 +1,72 @@
+.disable-mode .card__heading { width: 13.2rem; }
+
+.container.heading {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0;
+    border-bottom: .063rem solid #f7e773;
+}
+
+.card__heading {
+    padding: .5rem;
+    text-transform: capitalize;
+}
+
+.card__heading {
+    display: block;
+    width: 12rem;
+    height: auto;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+.editmode .card__heading {
+    height: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    padding: .45rem;
+    background-color: #f9f8f7;
+    border: .1rem solid transparent;
+    border-radius: .15rem;
+    color: #656565;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.card__checkbox { margin-top: .6rem; }
+
+.card__checkbox:hover { cursor: pointer; }
+
+.card__edit,
+.card__submit,
+.card__cancel { height: 2.1rem; }
+
+.card__edit:hover,
+.card__submit:hover,
+.card__cancel:hover { cursor: pointer; }
+
+.card__edit,
+.card__submit { padding-right: .5rem; }
+
+.card__edit {
+    color: #656565;
+    fill: #f7e773;
+}
+
+.container.card.active .card__edit { color: #999999; }
+
+.card__edit:hover { fill: #e0a7f7; }
+
+/* Styles for correct view in Mozilla Firefox */
+@-moz-document url-prefix() {
+    .card__heading { line-height: .95rem; }
+
+    .card__edit { height: 2.45rem; }
+
+    .card__checkbox { margin-top: 0; }
+}

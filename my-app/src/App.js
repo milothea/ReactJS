@@ -1,9 +1,9 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState} from 'react';
 import styled from 'styled-components';
 import CardsData from './data/CardsData';
+import CardList from './components/UI/CardList';
 import Header from './components/UI/Header';
-import Card from './components/UI/Card';
 
 const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
         & ~ .dm-controller__label {
@@ -23,29 +23,44 @@ const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
     `;
 
 const App = () => {
-    const [checked, setChecked] = useState(false);
-    const containerClassName = `cards-container${checked ? ' disable-mode' : ''}`;
+    const [isDisableMode, setIsDisableMode] = useState(false);
+    const [cardsData, setCardsData] = useState(CardsData);
+    const [activeCardsId, setActiveCardsId] = useState([]);
+    let selectedCards;
 
-    const checkboxHandler = () => setChecked(!checked);
+    const checkboxHandler = () => setIsDisableMode(prevState => !prevState);
+
+    const clickHandler = () => {
+        setCardsData(prevData => prevData.filter(card => !(activeCardsId.includes(card.id))));
+        setActiveCardsId([]);
+    };
+
+    const getActiveCards = (id, state) => {
+        if (state) {
+            setActiveCardsId(prevIdArr => [...prevIdArr, id]);
+        } else {
+            setActiveCardsId (prevIdArr => prevIdArr.filter(item => item !== id));
+        }
+    }
+
+    useEffect(() => {
+        selectedCards = activeCardsId;
+    }, [activeCardsId]);
 
     return (
         <div className='react-app'>
             <Header title='Notes' />
-            <div className='disable-mode-control'>
-                <Checkbox onClick={checkboxHandler} />
-                <label className='dm-controller__label' htmlFor='dm-controller'>Read only</label>
+            <div className='controls-container'>
+                <div className='controls__disable-mode'>
+                    <Checkbox onClick={checkboxHandler} />
+                    <label className='dm-controller__label' htmlFor='dm-controller'>Read only</label>
+                </div>
+                <button className='controls__remove-btn' onClick={clickHandler}>Remove selected cards</button>
             </div>
-            <div className={containerClassName}>
-                {
-                    CardsData.map(data => {
-                        return(<Card key={data.id}
-                                     heading={data.heading}
-                                     text={data.text}
-                                     id={data.id}
-                                     isDisableMode={checked}/>)
-                    })
-                }
-            </div>
+            <CardList data={cardsData}
+                      isDisableMode={isDisableMode}
+                      getActive={getActiveCards}
+            />;
         </div>
     );
 }
