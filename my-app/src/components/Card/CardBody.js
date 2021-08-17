@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useState} from 'react';
 import './CardBody.css';
 
-const CardBody = (props) => {
-    const [textInput, setTextInput] = useState(props.value);
-    const [defaultText, setDefaultText] = useState(props.value);
+const CardBody = ({ value, isEditMode, isSubmit, isDisableMode }) => {
+    const [textInput, setTextInput] = useState(value);
+    const [defaultText, setDefaultText] = useState(value);
 
     const textInputHandler = (event) => setTextInput(event.target.value);
     const cancelHandler = useCallback(() => setTextInput(defaultText), [defaultText]);
 
-    useEffect(() => cancelHandler(), [props.isDisableMode, cancelHandler]);
-    useEffect(() => setDefaultText(textInput),[props.isSubmit, textInput]);
+    useEffect(() => cancelHandler(), [isDisableMode, cancelHandler]);
+    useEffect(() => setDefaultText(textInput),[isSubmit, textInput]);
 
-    return props.isEditMode ? (
+    return isEditMode ? (
         <textarea className='card__text'
                       onChange={textInputHandler}
                       value={textInput}

@@ -3,8 +3,7 @@ import './Card.css';
 import CardHeader from './CardHeader';
 import CardBody from './CardBody';
 
-const Card = (props) => {
-    const { id, isDisableMode, heading, text, getActiveId} = props;
+const Card = ({ id, isDisableMode, heading, text, getActiveId }) => {
     const [isActive, setIsActive] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
