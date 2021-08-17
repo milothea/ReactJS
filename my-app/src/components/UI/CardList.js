@@ -1,4 +1,4 @@
-import Card from '../Card/Card';
+import Card from '../Card/';
 import './CardList.css';
 
 const CardList = ({ isDisableMode, getActive, data }) => {
@@ -9,11 +9,11 @@ const CardList = ({ isDisableMode, getActive, data }) => {
             {
                 data.map(card => {
                     return(<Card key={card.id}
-                                 heading={card.heading}
-                                 text={card.text}
-                                 id={card.id}
-                                 isDisableMode={isDisableMode}
-                                 getActiveId={getActive}
+                                  heading={card.heading}
+                                  text={card.text}
+                                  id={card.id}
+                                  isDisableMode={isDisableMode}
+                                  getActiveId={getActive}
                     />);
                 })
             }

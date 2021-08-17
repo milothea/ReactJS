@@ -2,7 +2,7 @@ import { useEffect, useState} from 'react';
 import './CardHeader.css';
 import { HiOutlineCheck, HiOutlinePencil, HiOutlineX} from "react-icons/hi";
 
-const CardHeader = ({ editmode, isSubmit, isActive, isDisableMode, id }) => {
+const CardHeader = ({ editmode, isSubmit, isActive, isDisableMode, id, value }) => {
     const [headingInput, setHeadingInput] = useState(value);
     const [defaultHeading, setDefaultHeading] = useState(value);
     const [checked, setChecked] = useState(false);
