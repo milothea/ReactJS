@@ -35,11 +35,7 @@ const App = () => {
     };
 
     const getActiveCards = (id, state) => {
-        if (state) {
-            setActiveCardsId(prevIdArr => [...prevIdArr, id]);
-        } else {
-            setActiveCardsId (prevIdArr => prevIdArr.filter(item => item !== id));
-        }
+        setActiveCardsId( prevIdArr => state ? [...prevIdArr, id] : prevIdArr.filter(item => item !== id)) ;
     }
 
     return (
