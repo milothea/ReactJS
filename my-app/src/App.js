@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState} from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import CardsData from './data/CardsData';
 import CardList from './components/UI/CardList';
@@ -25,18 +25,37 @@ const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
 const App = () => {
     const [isDisableMode, setIsDisableMode] = useState(false);
     const [cardsData, setCardsData] = useState(CardsData);
-    const [activeCardsId, setActiveCardsId] = useState([]);
+
+    const changeActiveStateHandler = (id) => setCardsData(prevData => prevData.map(card => {
+        if (card.id === id) {
+            const prev = {...card};
+
+            prev.isActive = !card.isActive;
+
+            return prev;
+        }
+
+        return card;
+    }))
 
     const checkboxHandler = () => setIsDisableMode(prevState => !prevState);
 
-    const clickHandler = () => {
-        setCardsData(prevData => prevData.filter(card => !(activeCardsId.includes(card.id))));
-        setActiveCardsId([]);
+    const deleteHandler = () => {
+        setCardsData(prevData => prevData.filter(card => !(card.isActive)));
     };
 
-    const getActiveCards = (id, state) => {
-        setActiveCardsId( prevIdArr => state ? [...prevIdArr, id] : prevIdArr.filter(item => item !== id)) ;
-    }
+    const updateCardData = (id, newHeading, newText) => setCardsData(prevData => prevData.map(item => {
+        if (item.id === id) {
+            const data = {...item};
+
+            data.heading = newHeading;
+            data.text = newText;
+
+            return data;
+        }
+
+        return item;
+    }));
 
     return (
         <div className='react-app'>
@@ -46,11 +65,12 @@ const App = () => {
                     <Checkbox onClick={checkboxHandler} />
                     <label className='dm-controller__label' htmlFor='dm-controller'>Read only</label>
                 </div>
-                <button className='controls__remove-btn' onClick={clickHandler}>Remove selected cards</button>
+                <button className='controls__remove-btn' onClick={deleteHandler}>Remove selected cards</button>
             </div>
             <CardList data={cardsData}
                       isDisableMode={isDisableMode}
-                      getActive={getActiveCards}
+                      onUpdateCardData={updateCardData}
+                      onChangeActiveState={changeActiveStateHandler}
             />;
         </div>
     );
