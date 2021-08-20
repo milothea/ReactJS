@@ -1,9 +1,11 @@
 import './App.css';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 import CardsData from './data/CardsData';
 import CardList from './components/UI/CardList';
 import Header from './components/UI/Header';
+import ModalWindow from './components/UI/ModalWindow';
 
 const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
         & ~ .dm-controller__label {
@@ -25,6 +27,7 @@ const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
 const App = () => {
     const [isDisableMode, setIsDisableMode] = useState(false);
     const [cardsData, setCardsData] = useState(CardsData);
+    const [isModalActive, setIsModalActive] = useState(false);
 
     const changeActiveStateHandler = (id) => setCardsData(prevData => prevData.map(card => {
         if (card.id === id) {
@@ -57,6 +60,22 @@ const App = () => {
         return item;
     }));
 
+    const addCardHandler = (heading, text) => {
+        setCardsData(prevData => [...prevData, {
+            heading: heading,
+            text: text,
+            isActive: false,
+            id: uuidv4()
+        }]);
+        setIsModalActive(prevState => !prevState);
+    }
+
+    const cancelAddingHandler = () => {
+        setIsModalActive(prevState => !prevState);
+    }
+
+    const openModalWindow = () => setIsModalActive(prevState => !prevState);
+
     return (
         <div className='react-app'>
             <Header title='Notes' />
@@ -65,13 +84,17 @@ const App = () => {
                     <Checkbox onClick={checkboxHandler} />
                     <label className='dm-controller__label' htmlFor='dm-controller'>Read only</label>
                 </div>
-                <button className='controls__remove-btn' onClick={deleteHandler}>Remove selected cards</button>
+                <button className='controls__btn add-btn' onClick={openModalWindow}>Add new card</button>
+                <button className='controls__btn remove-btn' onClick={deleteHandler}>Remove selected cards</button>
             </div>
             <CardList data={cardsData}
                       isDisableMode={isDisableMode}
                       onUpdateCardData={updateCardData}
                       onChangeActiveState={changeActiveStateHandler}
-            />;
+            />
+            <ModalWindow className={isModalActive ? '' : 'hidden'}
+                         onAddNewCard={addCardHandler}
+                         onCancel={cancelAddingHandler}  />
         </div>
     );
 }
