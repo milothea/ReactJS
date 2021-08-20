@@ -1,0 +1,20 @@
+.container.card {
+    width: 15rem;
+    height: 10rem;
+    padding: 1rem;
+    margin: .5rem;
+    text-align: left;
+    border: .15rem solid #f7e773;
+    border-radius: .5rem;
+    background-color: #ffffff;
+    box-shadow: 0 0 .2rem rgba(94, 94, 94, .2);
+}
+
+.disable-mode .container.card { background-color: #fbf7d8; }
+
+.container.card.active {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.container.card.editmode { background-color: #eeedeb; }
