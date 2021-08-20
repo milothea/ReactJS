@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import {useEffect, useState} from 'react';
 import './Card.css';
 import CardHeader from './CardHeader';
 import CardBody from './CardBody';
@@ -35,6 +35,8 @@ const Card = ({
         setIsEditMode(false);
         onUpdateCardData(id, headingInputValue, textInputValue);
     };
+
+    useEffect(() => setIsEditMode(false), [isDisableMode]);
 
     return (
         <div className={`container card${isActive ? ' active' : ''}${isEditMode ? ' editmode' : ''}`}
