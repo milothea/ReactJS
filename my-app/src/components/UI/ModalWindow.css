@@ -1,0 +1,72 @@
+.modal-window-wrapper.hidden { display: none; }
+
+.modal-window-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(63, 63, 63, .5);
+}
+.modal-window {
+    width: 20rem;
+    height: 20rem;
+    margin: 15% auto;
+    background-color: #f7e773;
+    border-radius: .5rem;
+    color: #3f3f3f;
+}
+
+.modal-window__heading {
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: .5rem;
+}
+
+.modal-window__fieldset {
+    width: 18rem;
+    margin: 1rem auto;
+    border-radius: .5rem;
+}
+
+.modal-window__fieldset.heading { height: 2.7rem; }
+
+.modal-window__input,
+.modal-window__textarea {
+    width: 96%;
+    border: none;
+    background-color: transparent;
+    padding: .3rem;
+    color: #656565;
+}
+
+.modal-window__input:focus,
+.modal-window__textarea:focus { outline: none}
+
+.modal-window__textarea {
+    height: 8rem;
+    resize: none;
+    overflow: auto;
+}
+
+.modal-window__btn-wrap {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.modal-window__btn {
+    width: 5rem;
+    background-color: #656565;
+    border-style: solid;
+    border-radius: .3rem;
+    color: #f7e773;
+    margin: 0 .5rem;
+}
+
+.modal-window__btn:hover {
+    cursor: pointer;
+    color: #3f3f3f;
+    border-color: #3f3f3f;
+    background-color: #f7e773;
+}
