@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import './Card.css';
 import CardHeader from './CardHeader';
 import CardBody from './CardBody';
@@ -60,5 +61,15 @@ const Card = ({
         </div>
     );
 }
+
+Card.propTypes = {
+    id: PropTypes.number,
+    isDisableMode: PropTypes.bool,
+    isActive: PropTypes.bool,
+    heading: PropTypes.string,
+    text: PropTypes.string,
+    onUpdateCardData: PropTypes.func,
+    onChangeActiveState: PropTypes.func
+};
 
 export default React.memo(Card);
