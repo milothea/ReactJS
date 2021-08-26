@@ -39,7 +39,7 @@ const App = () => {
         }
 
         return card;
-    }))
+    }));
 
     const checkboxHandler = () => setIsDisableMode(prevState => !prevState);
 
