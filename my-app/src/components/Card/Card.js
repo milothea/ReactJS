@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import './Card.css';
 import CardHeader from './CardHeader';
 import CardBody from './CardBody';
@@ -61,4 +61,4 @@ const Card = ({
     );
 }
 
-export default Card;
+export default React.memo(Card);
