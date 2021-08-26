@@ -71,7 +71,7 @@ const withLoadingDelay = (Component) => {
         const [isRendered, setIsRendered] = useState(false);
 
         useEffect(() => {
-            setTimeout(() => setIsRendered(true), 400);
+            setTimeout(() => setIsRendered(true), 2000);
         }, []);
 
         return isRendered ? (
