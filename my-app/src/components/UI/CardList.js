@@ -1,31 +1,27 @@
+import { useContext } from 'react';
+import AppContext from '../../data/app-context';
 import Card from '../Card/';
 import './CardList.css';
 import withLoadingDelay from '../HOC/withLoadingDelay';
 
 const CardWithSpinner = withLoadingDelay(Card);
 
-const CardList = ({
-                      isDisableMode,
-                      getActiveCards,
-                      data,
-                      onUpdateCardData,
-                      onChangeActiveState
-}) => {
+const CardList = ({ isDisableMode }) => {
+    const context = useContext(AppContext);
     const containerClassName = `cards-container${isDisableMode ? ' disable-mode' : ''}`;
 
     return (
         <div className={containerClassName}>
             {
-                data.map(card => {
+                context.cardsData.map(card => {
                     return <CardWithSpinner key={card.id}
                                             heading={card.heading}
                                             text={card.text}
                                             id={card.id}
                                             isDisableMode={isDisableMode}
                                             isActive={card.isActive}
-                                            getActiveCards={getActiveCards}
-                                            onUpdateCardData={onUpdateCardData}
-                                            onChangeActiveState={onChangeActiveState} />;
+                                            onUpdateCardData={context.onUpdateCardData}
+                                            onChangeActiveState={context.onChangeActiveState} />;
                 })
             }
         </div>

@@ -1,8 +1,7 @@
 import './App.css';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
-import CardsData from './data/CardsData';
+import AppContext from './data/app-context';
 import CardList from './components/UI/CardList';
 import Header from './components/UI/Header';
 import ModalWindow from './components/UI/ModalWindow';
@@ -25,50 +24,16 @@ const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
     `;
 
 const App = () => {
+    const context = useContext(AppContext);
     const [isDisableMode, setIsDisableMode] = useState(false);
-    const [cardsData, setCardsData] = useState(CardsData);
     const [isModalActive, setIsModalActive] = useState(false);
-
-    const changeActiveStateHandler = (id) => setCardsData(prevData => prevData.map(card => {
-        if (card.id === id) {
-            const prev = {...card};
-
-            prev.isActive = !card.isActive;
-
-            return prev;
-        }
-
-        return card;
-    }));
 
     const checkboxHandler = () => setIsDisableMode(prevState => !prevState);
 
-    const deleteHandler = () => {
-        setCardsData(prevData => prevData.filter(card => !(card.isActive)));
-    };
-
-    const updateCardData = (id, newHeading, newText) => setCardsData(prevData => prevData.map(item => {
-        if (item.id === id) {
-            const data = {...item};
-
-            data.heading = newHeading;
-            data.text = newText;
-
-            return data;
-        }
-
-        return item;
-    }));
-
     const addCardHandler = (heading, text) => {
-        setCardsData(prevData => [...prevData, {
-            heading: heading,
-            text: text,
-            isActive: false,
-            id: uuidv4()
-        }]);
+        context.onAddCard(heading, text);
         setIsModalActive(prevState => !prevState);
-    }
+    };
 
     const cancelAddingHandler = () => {
         setIsModalActive(prevState => !prevState);
@@ -82,15 +47,15 @@ const App = () => {
             <div className='controls-container'>
                 <div className='controls__disable-mode'>
                     <Checkbox onClick={checkboxHandler} />
-                    <label className='dm-controller__label' htmlFor='dm-controller'>Read only</label>
+                    <label className='dm-controller__label'
+                           htmlFor='dm-controller'>Read only</label>
                 </div>
-                <button className='controls__btn add-btn' onClick={openModalWindow}>Add new card</button>
-                <button className='controls__btn remove-btn' onClick={deleteHandler}>Remove selected cards</button>
+                <button className='controls__btn add-btn'
+                        onClick={openModalWindow}>Add new card</button>
+                <button className='controls__btn remove-btn'
+                        onClick={context.onDeleteCard}>Remove selected cards</button>
             </div>
-            <CardList data={cardsData}
-                      isDisableMode={isDisableMode}
-                      onUpdateCardData={updateCardData}
-                      onChangeActiveState={changeActiveStateHandler}
+            <CardList isDisableMode={isDisableMode}
             />
             <ModalWindow className={isModalActive ? '' : 'hidden'}
                          onAddNewCard={addCardHandler}

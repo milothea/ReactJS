@@ -1,12 +1,37 @@
 .App-header {
+    display: flex;
+    flex-wrap: nowrap;
     height: 3rem;
     background-color: #f7e773;
     box-shadow: 0 .2rem 1rem rgba(94, 94, 94, .2);
 }
 
 .App-header__heading {
+    display: block;
+    width: calc(100vw - 11rem);
     font-size: 2rem;
     line-height: 3rem;
     text-align: center;
     text-transform: uppercase;
+    padding-left: 11rem;
+}
+
+.App-header__counter-wrapper {
+    width: 11rem;
+    height: 100%;
+    line-height: 3rem;
+}
+
+.App-header__counter {
+    display: inline-block;
+    width: 1.5rem;
+    height: 2.7rem;
+    color: #656565;
+    background-color: #eeedeb;
+    border-radius: .5rem;
+    text-align: center;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    margin-top: 2%;
+    margin-left: .25rem;
 }
