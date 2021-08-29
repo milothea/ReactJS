@@ -63,7 +63,7 @@ const Card = ({
 }
 
 Card.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     isDisableMode: PropTypes.bool,
     isActive: PropTypes.bool,
     heading: PropTypes.string,
