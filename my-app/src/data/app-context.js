@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import CardsData from "./CardsData";
-import {v4 as uuidv4} from "uuid";
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
+import {v4 as uuidv4} from 'uuid';
 
 const AppContext = React.createContext({
-    cardsData: CardsData,
+    cardsData: [],
     onChangeActiveState: (id) => {},
     onUpdateCardData: (id, newHeading, newText) => {},
     onAddCard: (heading, text) => {},
@@ -11,10 +11,28 @@ const AppContext = React.createContext({
 });
 
 export const AppContextProvider = (props) => {
-    const [cardsData, setCardsData] = useState(CardsData);
+    const [cardsData, setCardsData] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://raw.githubusercontent.com/BrunnerLivio/PokemonDataGraber/master/output.json')
+            .then((res) => {
+                let data = [...res.data.slice(0, 15)];
+
+                data = data.map((datum) => {
+                    const newDatum = {...datum};
+
+                    newDatum.isActive = false;
+
+                    return newDatum
+                });
+
+                setCardsData(data);
+            })
+            .catch((err) => new Error(`Something went worng. Error: ${err}`));
+    }, []);
 
     const changeActiveStateHandler = (id) => setCardsData(prevData => prevData.map(card => {
-        if (card.id === id) {
+        if (card.Number === id) {
             const prev = {...card};
 
             prev.isActive = !card.isActive;
@@ -26,11 +44,11 @@ export const AppContextProvider = (props) => {
     }));
 
     const updateCardDataHandler = (id, newHeading, newText) => setCardsData(prevData => prevData.map(item => {
-        if (item.id === id) {
+        if (item.Number === id) {
             const data = {...item};
 
-            data.heading = newHeading;
-            data.text = newText;
+            data.Name = newHeading;
+            data.About = newText;
 
             return data;
         }
@@ -40,10 +58,10 @@ export const AppContextProvider = (props) => {
 
     const addCardHandler = (heading, text) => {
         setCardsData(prevData => [...prevData, {
-            heading: heading,
-            text: text,
+            Name: heading,
+            About: text,
             isActive: false,
-            id: uuidv4()
+            Number: uuidv4()
         }]);
     };
 
