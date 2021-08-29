@@ -28,10 +28,11 @@ export const AppContextProvider = (props) => {
 
                 setCardsData(data);
             })
+            .catch((err) => new Error(`Something went worng. Error: ${err}`));
     }, []);
 
     const changeActiveStateHandler = (id) => setCardsData(prevData => prevData.map(card => {
-        if (card['Number'] === id) {
+        if (card.Number === id) {
             const prev = {...card};
 
             prev.isActive = !card.isActive;
@@ -43,11 +44,11 @@ export const AppContextProvider = (props) => {
     }));
 
     const updateCardDataHandler = (id, newHeading, newText) => setCardsData(prevData => prevData.map(item => {
-        if (item['Number'] === id) {
+        if (item.Number === id) {
             const data = {...item};
 
-            data['Name'] = newHeading;
-            data['About'] = newText;
+            data.Name = newHeading;
+            data.About = newText;
 
             return data;
         }
@@ -57,10 +58,10 @@ export const AppContextProvider = (props) => {
 
     const addCardHandler = (heading, text) => {
         setCardsData(prevData => [...prevData, {
-            'Name': heading,
-            'About': text,
+            Name: heading,
+            About: text,
             isActive: false,
-            'Number': uuidv4()
+            Number: uuidv4()
         }]);
     };
 

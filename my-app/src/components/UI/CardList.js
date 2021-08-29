@@ -14,12 +14,12 @@ const CardList = ({ isDisableMode }) => {
         <div className={containerClassName}>
             {
                 context.cardsData.map(card => {
-                    return <CardWithSpinner key={card['Number']}
-                                            heading={card['Name']}
-                                            text={card['About']}
-                                            id={card['Number']}
+                    return <CardWithSpinner key={card.Number}
+                                            heading={card.Name}
+                                            text={card.About}
+                                            id={card.Number}
                                             isDisableMode={isDisableMode}
-                                            isActive={card['isActive']}
+                                            isActive={card.isActive}
                                             onUpdateCardData={context.onUpdateCardData}
                                             onChangeActiveState={context.onChangeActiveState} />;
                 })
