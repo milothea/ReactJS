@@ -1,6 +1,11 @@
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AppContext from '../../../data/app-context';
 import './SignInPage.css';
 
 const SignInPage = () => {
+    const context = useContext(AppContext);
+
     return (
       <div className='sign-in-page'>
           <div className='sign-in__container'>
@@ -13,7 +18,8 @@ const SignInPage = () => {
                   <legend className='sign-in__legend'>Password</legend>
                   <input className='sign-in__input' type='password'/>
               </fieldset>
-              <button className='sign-in-page__btn'>Sign in</button>
+              <Link className='sign-in-page__btn'
+                    to={context.paths.mainPage}>Sign in</Link>
           </div>
       </div>
     );
