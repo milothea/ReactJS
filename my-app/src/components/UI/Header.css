@@ -12,32 +12,33 @@
     width: 10rem;
     height: 100%;
     justify-content: space-evenly;
-    padding-top: .5rem;
     list-style: none;
 }
 
 .app-header__rout-item {
     width: 4rem;
-    height: 1.5rem;
+    height: 3rem;
 }
 
-.app-header__routing-btn {
+.app-header__routing-link {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #f7e773;
-    border: .15rem solid #999999;
-    border-radius: .25rem;
     color: #656565;
     text-decoration: none;
-    line-height: 1.5rem;
+    line-height: 3rem;
     text-align: center;
 }
 
-.app-header__routing-btn:hover {
-    background-color: #656565;
-    border-color: #656565;
-    color: #f7e773;
+.app-header__routing-link:hover {
+    color: #3f3f3f;
+    font-weight: 900;
+}
+
+.active-routing {
+    color: #3f3f3f;
+    font-weight: 900;
+    text-decoration: underline;
 }
 
 .app-header__heading {
@@ -47,7 +48,6 @@
     line-height: 3rem;
     text-align: center;
     text-transform: uppercase;
-    /*padding-left: rem;*/
 }
 
 .app-header__counter-wrapper {

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import AppContext from '../../data/app-context';
 import './Header.css';
 
@@ -10,12 +10,14 @@ const Header = ({ title }) => {
         <header className='app-header'>
             <ul className='app-header__routing'>
                 <li className='app-header__rout-item'>
-                    <Link className='app-header__routing-btn'
-                          to={context.paths.mainPage}>Home</Link>
+                    <NavLink className='app-header__routing-link'
+                             activeClassName='active-routing'
+                             to={context.paths.mainPage}>Home</NavLink>
                 </li>
                 <li className='app-header__rout-item'>
-                    <Link className='app-header__routing-btn'
-                          to={context.paths.authPage}>Sign in</Link>
+                    <NavLink className='app-header__routing-link'
+                             activeClassName='active-routing'
+                             to={context.paths.authPage}>Sign in</NavLink>
                 </li>
             </ul>
             <h1 className='app-header__heading'>{title}</h1>
