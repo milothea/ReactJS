@@ -9,11 +9,11 @@ const Header = ({ title }) => {
     return (
         <header className='app-header'>
             <ul className='app-header__routing'>
-                <li>
+                <li className='app-header__rout-item'>
                     <Link className='app-header__routing-btn'
                           to={context.paths.mainPage}>Home</Link>
                 </li>
-                <li>
+                <li className='app-header__rout-item'>
                     <Link className='app-header__routing-btn'
                           to={context.paths.authPage}>Sign in</Link>
                 </li>
