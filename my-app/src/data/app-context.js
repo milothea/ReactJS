@@ -4,6 +4,7 @@ import {v4 as uuidv4} from 'uuid';
 
 const AppContext = React.createContext({
     cardsData: [],
+    paths: {},
     onChangeActiveState: (id) => {},
     onUpdateCardData: (id, newHeading, newText) => {},
     onAddCard: (heading, text) => {},
@@ -12,6 +13,11 @@ const AppContext = React.createContext({
 
 export const AppContextProvider = (props) => {
     const [cardsData, setCardsData] = useState([]);
+    const paths = {
+        mainPage: '/home',
+        errorPage: '/error',
+        authPage: '/signin'
+    }
 
     useEffect(() => {
         axios.get('https://raw.githubusercontent.com/BrunnerLivio/PokemonDataGraber/master/output.json')
@@ -28,7 +34,7 @@ export const AppContextProvider = (props) => {
 
                 setCardsData(data);
             })
-            .catch((err) => new Error(`Something went worng. Error: ${err}`));
+            .catch((err) => new Error(`Something went wrong. Error: ${err}`));
     }, []);
 
     const changeActiveStateHandler = (id) => setCardsData(prevData => prevData.map(card => {
@@ -72,6 +78,7 @@ export const AppContextProvider = (props) => {
     return <AppContext.Provider value={
         {
             cardsData: cardsData,
+            paths: paths,
             onChangeActiveState: changeActiveStateHandler,
             onUpdateCardData: updateCardDataHandler,
             onAddCard: addCardHandler,

@@ -4,39 +4,3 @@
     color: #3f3f3f;
     background-color: #f6f4ec;
 }
-
-.controls-container {
-    min-height: 2rem;
-    display: flex;
-    flex-wrap: nowrap;
-    margin-top: 2rem;
-}
-
-.controls__disable-mode {
-    width: 70%;
-    min-height: 1.2rem;
-    margin-left: 13%;
-}
-
-.controls__btn {
-    width: 15rem;
-    height: auto;
-    min-height: 2rem;
-    max-height: 4rem;
-    background-color: #f7e773;
-    border: .5rem solid #f7e773;
-    border-radius: .3rem;
-    color: #3f3f3f;
-}
-
-.controls__btn.add-btn { margin-right: 1rem; }
-
-.controls__btn.remove-btn { margin-right: 13%; }
-
-.controls__btn:hover {
-    cursor: pointer;
-    background-color: #3f3f3f;
-    border-color: #3f3f3f;
-    color: #f7e773;
-}
-
