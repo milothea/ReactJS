@@ -14,13 +14,16 @@
 }
 
 .error-page__btn {
+    display: block;
     width: 10rem;
     height: 1.5rem;
     border: .15rem solid #f7e773;
     border-radius: .25rem;
     background-color: #f7e773;
     color: #3f3f3f;
-    margin-top: 2rem;
+    margin: 2rem auto;
+    line-height: 1.5rem;
+    text-decoration: none;
 }
 
 .error-page__btn:hover {

@@ -30,16 +30,13 @@
     text-align: center;
 }
 
-.app-header__routing-link:hover {
+.app-header__routing-link:hover,
+.active-routing {
     color: #3f3f3f;
     font-weight: 900;
 }
 
-.active-routing {
-    color: #3f3f3f;
-    font-weight: 900;
-    text-decoration: underline;
-}
+.active-routing { text-decoration: underline; }
 
 .app-header__heading {
     display: block;
