@@ -1,10 +1,13 @@
 import './App.css';
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { Route } from 'react-router-dom';
 import AppContext from './data/app-context';
 import CardList from './components/UI/CardList';
 import Header from './components/UI/Header';
 import ModalWindow from './components/UI/ModalWindow';
+import ErrorPage from './components/UI/pages/ErrorPage';
+import SignInPage from './components/UI/pages/SignInPage';
 
 const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
         & ~ .dm-controller__label {
@@ -44,22 +47,29 @@ const App = () => {
     return (
         <div className='react-app'>
             <Header title='Notes' />
-            <div className='controls-container'>
-                <div className='controls__disable-mode'>
-                    <Checkbox onClick={checkboxHandler} />
-                    <label className='dm-controller__label'
-                           htmlFor='dm-controller'>Read only</label>
+            <Route path={context.paths.errorPage}>
+                <ErrorPage />
+            </Route>
+            <Route path={context.paths.mainPage}>
+                <div className='controls-container'>
+                    <div className='controls__disable-mode'>
+                        <Checkbox onClick={checkboxHandler} />
+                        <label className='dm-controller__label'
+                               htmlFor='dm-controller'>Read only</label>
+                    </div>
+                    <button className='controls__btn add-btn'
+                            onClick={openModalWindow}>Add new card</button>
+                    <button className='controls__btn remove-btn'
+                            onClick={context.onDeleteCard}>Remove selected cards</button>
                 </div>
-                <button className='controls__btn add-btn'
-                        onClick={openModalWindow}>Add new card</button>
-                <button className='controls__btn remove-btn'
-                        onClick={context.onDeleteCard}>Remove selected cards</button>
-            </div>
-            <CardList isDisableMode={isDisableMode}
-            />
-            <ModalWindow className={isModalActive ? '' : 'hidden'}
-                         onAddNewCard={addCardHandler}
-                         onCancel={cancelAddingHandler}  />
+                <CardList isDisableMode={isDisableMode} />
+                <ModalWindow className={isModalActive ? '' : 'hidden'}
+                             onAddNewCard={addCardHandler}
+                             onCancel={cancelAddingHandler}  />
+            </Route>
+            <Route path={context.paths.authPage}>
+                <SignInPage />
+            </Route>
         </div>
     );
 }
