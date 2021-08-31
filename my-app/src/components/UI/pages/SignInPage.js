@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../../../data/app-context';
 import './SignInPage.css';
 import Input from '../Input';
@@ -6,6 +7,7 @@ import useInput from '../../hooks/use-input';
 
 const SignInPage = () => {
     const context = useContext(AppContext);
+    const history = useHistory();
     const {
         value: usernameValue,
         isValid: isUsernameValid,
@@ -30,6 +32,7 @@ const SignInPage = () => {
         resetUsername();
         resetPassword();
         context.onSignIn();
+        history.replace('/');
     }
 
     return (
