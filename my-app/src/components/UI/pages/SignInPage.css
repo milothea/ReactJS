@@ -24,27 +24,12 @@
     margin-bottom: 2rem;
 }
 
-.sign-in__fieldset {
+.error-message {
+    display: block;
     width: 20rem;
-    height: 2.5rem;
-    margin: 1rem auto;
-    border: .15rem solid #f7e773;
-    border-radius: .25rem;
-}
-
-.sign-in__legend {
-    font-size: 1.2rem;
-    color: #3f3f3f;
-}
-
-.sign-in__input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    color: #3f3f3f;
-    padding: .3rem;
-    box-sizing: border-box;
+    color: #890f0b;
+    font-size: .65rem;
+    margin: .25rem auto;
 }
 
 .sign-in-page__btn {
@@ -62,7 +47,16 @@
 }
 
 .sign-in-page__btn:hover {
+    cursor: pointer;
     background-color: #3f3f3f;
     border-color: #3f3f3f;
     color: #f7e773;
 }
+
+.sign-in-page__btn.disabled {
+    background-color: #999999;
+    border-color: #999999;
+    color: #656565;
+}
+.sign-in-page__btn.disabled:hover {
+    cursor: initial;}
