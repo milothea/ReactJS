@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import AppContext from '../../../data/app-context';
-import styled from "styled-components";
+import { Fragment, useState } from 'react';
+import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 import './MainPage.css';
 import CardList from '../CardList';
 import ModalWindow from '../ModalWindow';
@@ -23,14 +23,20 @@ const Checkbox = styled.input.attrs({type: 'checkbox', id: 'dm-controller'})`
     `;
 
 const MainPage = () => {
-    const context = useContext(AppContext);
+    const dispatch = useDispatch();
     const [isDisableMode, setIsDisableMode] = useState(false);
     const [isModalActive, setIsModalActive] = useState(false);
 
     const checkboxHandler = () => setIsDisableMode(prevState => !prevState);
 
     const addCardHandler = (heading, text) => {
-        context.onAddCard(heading, text);
+        dispatch({
+            type: 'cardsData/addCard',
+            payload: {
+                heading: heading,
+                text: text
+            }
+        });
         setIsModalActive(prevState => !prevState);
     };
 
@@ -40,7 +46,7 @@ const MainPage = () => {
 
     const openModalWindow = () => setIsModalActive(prevState => !prevState);
     return (
-        <React.Fragment>
+        <Fragment>
             <div className='controls-container'>
                 <div className='controls__disable-mode'>
                     <Checkbox onClick={checkboxHandler} />
@@ -50,13 +56,15 @@ const MainPage = () => {
                 <button className='controls__btn add-btn'
                         onClick={openModalWindow}>Add new card</button>
                 <button className='controls__btn remove-btn'
-                        onClick={context.onDeleteCard}>Remove selected cards</button>
+                        onClick={dispatch({ type: 'cardsData/deleteCards' })}>
+                    Remove selected cards
+                </button>
             </div>
             <CardList isDisableMode={isDisableMode} />
             <ModalWindow className={isModalActive ? '' : 'hidden'}
                          onAddNewCard={addCardHandler}
                          onCancel={cancelAddingHandler}  />
-        </React.Fragment>
+        </Fragment>
     )
 }
 

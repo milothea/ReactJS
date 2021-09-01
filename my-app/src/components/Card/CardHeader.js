@@ -1,4 +1,5 @@
 import './CardHeader.css';
+import { useDispatch } from 'react-redux';
 import { HiOutlineCheck, HiOutlinePencil, HiOutlineX} from "react-icons/hi";
 
 const CardHeader = ({
@@ -10,9 +11,9 @@ const CardHeader = ({
                         onEdit,
                         onChange,
                         onCancel,
-                        onSubmit,
-                        onChangeActiveState
+                        onSubmit
                     }) => {
+    const dispatch = useDispatch();
 
     return isEditMode ? (
         <div className='container heading'>
@@ -35,7 +36,12 @@ const CardHeader = ({
             <input className='card__checkbox'
                    type='checkbox'
                    checked={isActive}
-                   onChange={() => onChangeActiveState(id)} />
+                   onChange={() => dispatch({
+                       type: 'cardsData/switchActiveState',
+                       payload: {
+                           id: id
+                       }
+                   })} />
         </div>
     );
 }

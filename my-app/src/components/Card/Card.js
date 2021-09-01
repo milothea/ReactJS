@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Card.css';
 import CardHeader from './CardHeader';
@@ -9,17 +10,21 @@ const Card = ({
                   isDisableMode,
                   isActive,
                   heading,
-                  text,
-                  onUpdateCardData,
-                  onChangeActiveState
+                  text
 }) => {
+    const dispatch = useDispatch();
     const [isEditMode, setIsEditMode] = useState(false);
     const [headingInputValue, setHeadingInputValue] = useState(heading);
     const [textInputValue, setTextInputValue] = useState(text);
 
     const editHandler = () => {
         setIsEditMode(true);
-        if (isActive) onChangeActiveState(id);
+        if (isActive) dispatch({
+            type: 'cardsData/switchActiveState',
+            payload: {
+                id: id
+            }
+        });
     };
 
     const headingInputHandler = (event) => setHeadingInputValue(event.target.value);
@@ -34,7 +39,14 @@ const Card = ({
 
     const submitHandler = () => {
         setIsEditMode(false);
-        onUpdateCardData(id, headingInputValue, textInputValue);
+        dispatch({
+            type: 'cardsData/updateCardData',
+            payload: {
+                id: id,
+                newHeading: headingInputValue,
+                newText: textInputValue
+            }
+        });
     };
 
     useEffect(() => setIsEditMode(false), [isDisableMode]);
@@ -51,8 +63,6 @@ const Card = ({
                         onChange={headingInputHandler}
                         onCancel={cancelHandler}
                         onSubmit={submitHandler}
-                        onUpdateCardData={onUpdateCardData}
-                        onChangeActiveState={onChangeActiveState}
             />
             <CardBody isEditMode={isEditMode}
                       value={isEditMode ? textInputValue : text}

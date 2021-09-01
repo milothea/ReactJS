@@ -1,12 +1,11 @@
-import { useContext } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import AppContext from '../../../data/app-context';
 import './SignInPage.css';
 import Input from '../Input';
 import useInput from '../../hooks/use-input';
 
 const SignInPage = () => {
-    const context = useContext(AppContext);
+    const dispatch = useDispatch();
     const history = useHistory();
     const {
         value: usernameValue,
@@ -31,7 +30,9 @@ const SignInPage = () => {
         sessionStorage.setItem(usernameValue, passwordValue);
         resetUsername();
         resetPassword();
-        context.onSignIn();
+        dispatch({
+            type: 'authorization/login'
+        });
         history.replace('/');
     }
 
