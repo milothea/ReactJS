@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useContext, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import AppContext from './data/app-context';
 import Header from './components/UI/Header';
 import MainPage from './components/UI/pages/MainPage';
@@ -14,11 +14,17 @@ const App = () => {
         <div className='react-app'>
             <Header title='Notes' />
             <Switch>
+                <Route path={context.paths.mainPage} exact>
+                    {
+                        context.isLoggedIn ? (
+                            <MainPage />
+                        ) : (
+                            <Redirect to={context.paths.authPage} />
+                        )
+                    }
+                </Route>
                 <Route path={context.paths.errorPage}>
                     <ErrorPage />
-                </Route>
-                <Route path={context.paths.mainPage}>
-                    <MainPage />
                 </Route>
                 <Route path={context.paths.authPage}>
                     <SignInPage />
