@@ -12,7 +12,7 @@ const Header = ({ title }) => {
                 <li className='app-header__rout-item'>
                     <NavLink className='app-header__routing-link'
                              activeClassName='active-routing'
-                             to={context.paths.mainPage}>Home</NavLink>
+                             exact to={context.paths.mainPage}>Home</NavLink>
                 </li>
                 <li className='app-header__rout-item'>
                     <NavLink className='app-header__routing-link'

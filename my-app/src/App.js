@@ -14,20 +14,17 @@ const App = () => {
         <div className='react-app'>
             <Header title='Notes' />
             <Switch>
-                <Route path='/' exact>
+                <Route path={context.paths.mainPage} exact>
                     {
                         context.isLoggedIn ? (
-                            <Redirect to={context.paths.mainPage} />
+                            <MainPage />
                         ) : (
                             <Redirect to={context.paths.authPage} />
                         )
                     }
-                    </Route>
+                </Route>
                 <Route path={context.paths.errorPage}>
                     <ErrorPage />
-                </Route>
-                <Route path={context.paths.mainPage}>
-                    <MainPage />
                 </Route>
                 <Route path={context.paths.authPage}>
                     <SignInPage />

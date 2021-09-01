@@ -17,7 +17,7 @@ export const AppContextProvider = (props) => {
     const [cardsData, setCardsData] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const paths = {
-        mainPage: '/home',
+        mainPage: '/',
         errorPage: '/error',
         authPage: '/authorisation'
     }
