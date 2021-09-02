@@ -16,7 +16,7 @@ const cardsDataSlice = createSlice({
         },
         updateCardData(state, action) {
             state.data = state.data.map(card => {
-                if (card.Number === action.id) {
+                if (card.Number === action.payload.id) {
                     const data = {...card};
 
                     data.Name = action.payload.newHeading;

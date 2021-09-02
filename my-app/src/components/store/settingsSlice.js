@@ -5,7 +5,7 @@ const initialState = {
     appPaths: {
         mainPage: '/',
         errorPage: '/error',
-        authPage: '/authorisation',
+        authPage: '/authentification',
         settings: '/settings'
     }
 };
