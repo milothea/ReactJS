@@ -1,0 +1,18 @@
+.settings-container {
+    width: 100%;
+    height: calc(100vh - 5rem);
+}
+
+.settings__item {
+    width: 40rem;
+    margin: 2rem auto;
+}
+.settings__heading {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.settings__label {
+    padding-left: 1rem;
+    font-size: 1.2rem;
+}

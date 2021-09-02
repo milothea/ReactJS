@@ -1,27 +1,25 @@
-import { useContext } from 'react';
-import AppContext from '../../data/app-context';
+import { useSelector } from 'react-redux';
 import Card from '../Card/';
 import './CardList.css';
 import withLoadingDelay from '../HOC/withLoadingDelay';
 
 const CardWithSpinner = withLoadingDelay(Card);
 
-const CardList = ({ isDisableMode }) => {
-    const context = useContext(AppContext);
-    const containerClassName = `cards-container${isDisableMode ? ' disable-mode' : ''}`;
+const CardList = () => {
+    const cardsData = useSelector(state => state.cardsData.data);
+    const isReadOnly = useSelector(state => state.settings.isReadOnly);
+    const containerClassName = `cards-container${isReadOnly ? ' disable-mode' : ''}`;
 
     return (
         <div className={containerClassName}>
             {
-                context.cardsData.map(card => {
+                cardsData.map(card => {
                     return <CardWithSpinner key={card.Number}
                                             heading={card.Name}
                                             text={card.About}
                                             id={card.Number}
-                                            isDisableMode={isDisableMode}
-                                            isActive={card.isActive}
-                                            onUpdateCardData={context.onUpdateCardData}
-                                            onChangeActiveState={context.onChangeActiveState} />;
+                                            isReadOnly={isReadOnly}
+                                            isActive={card.isActive} />;
                 })
             }
         </div>

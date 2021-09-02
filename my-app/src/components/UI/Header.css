@@ -1,7 +1,9 @@
 .app-header {
     display: flex;
     flex-wrap: nowrap;
-    height: 3rem;
+    min-height: 3rem;
+    height: auto;
+    align-content: center;
     background-color: #f7e773;
     box-shadow: 0 .2rem 1rem rgba(94, 94, 94, .2);
 }
@@ -9,14 +11,14 @@
 .app-header__routing {
     display: flex;
     flex-wrap: nowrap;
-    width: 10rem;
+    width: 13rem;
     height: 100%;
     justify-content: space-evenly;
     list-style: none;
 }
 
 .app-header__rout-item {
-    width: 4rem;
+    width: 5rem;
     height: 3rem;
 }
 
@@ -32,6 +34,7 @@
 
 .app-header__routing-link:hover,
 .active-routing {
+    cursor: pointer;
     color: #3f3f3f;
     font-weight: 900;
 }

@@ -5,7 +5,8 @@
     margin-top: 2rem;
 }
 
-.controls__disable-mode {
+.read-only-heading {
+    display: block;
     width: 70%;
     min-height: 1.2rem;
     margin-left: 13%;
