@@ -1,59 +1,55 @@
 import './App.css';
-import { useEffect } from 'react';
-// import React from 'react';
-import axios from 'axios';
+
+import {Fragment, useEffect} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchCardsData } from './components/store/cardsDataSlice';
+import { authActions } from './components/store/authSlice';
 import Header from './components/UI/Header';
 import MainPage from './components/UI/pages/MainPage';
 import ErrorPage from './components/UI/pages/ErrorPage';
 import SignInPage from './components/UI/pages/SignInPage';
+import Settings from './components/UI/pages/Settings';
 
 const App = () => {
-    const paths = useSelector(state => state.appPaths);
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const paths = useSelector(state => state.settings.appPaths);
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(isLoggedIn) {
-            axios.get('https://raw.githubusercontent.com/BrunnerLivio/PokemonDataGraber/master/output.json')
-                .then((res) => {
-                    let data = [...res.data.slice(0, 15)];
+        const isUser = localStorage.getItem('user');
 
-                    data = data.map((datum) => {
-                        const newDatum = {...datum};
-
-                        newDatum.isActive = false;
-
-                        return newDatum
-                    });
-
-                    dispatch({
-                        type: 'cardsData/setData',
-                        payload: {
-                            data: data
-                        }
-                    })
-                })
-                .catch((err) => new Error(`Something went wrong. Error: ${err}`));
+        if (isUser != null) {
+            dispatch(authActions.logIn(JSON.parse(isUser)));
         }
-    })
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(isLoggedIn) dispatch(fetchCardsData());
+    }, [isLoggedIn, dispatch])
 
     return (
         <div className='react-app'>
-            <Header title='Notes' />
+            <Header />
             <Switch>
                 <Route path={paths.mainPage} exact>
                     {
-                        isLoggedIn ? (
+                        isLoggedIn ?
                             <MainPage />
-                        ) : (
+                            :
                             <Redirect to={paths.authPage} />
-                        )
                     }
                 </Route>
                 <Route path={paths.authPage}>
-                    <SignInPage />
+                    {
+                        isLoggedIn ?
+                            <Redirect to={paths.mainPage} />
+                            :
+                            <SignInPage />
+                    }
+                </Route>
+                <Route path={paths.settings}>
+                    <Settings />
                 </Route>
                 <Route component={ ErrorPage }/>
             </Switch>
