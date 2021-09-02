@@ -1,6 +1,6 @@
 import './App.css';
 
-import {Fragment, useEffect} from 'react';
+import { useEffect} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCardsData } from './components/store/cardsDataSlice';

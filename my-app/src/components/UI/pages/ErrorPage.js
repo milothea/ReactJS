@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import './ErrorPage.css';
 
 const ErrorPage = () => {
-    const paths = useSelector(state => state.appPaths);
+    const paths = useSelector(state => state.settings.appPaths);
 
     return (
         <div className='error-page'>

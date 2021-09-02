@@ -1,5 +1,6 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { cardsActions } from '../store/cardsDataSlice';
 import PropTypes from 'prop-types';
 import './Card.css';
 import CardHeader from './CardHeader';
@@ -7,7 +8,7 @@ import CardBody from './CardBody';
 
 const Card = ({
                   id,
-                  isDisableMode,
+                  isReadOnly,
                   isActive,
                   heading,
                   text
@@ -19,12 +20,7 @@ const Card = ({
 
     const editHandler = () => {
         setIsEditMode(true);
-        if (isActive) dispatch({
-            type: 'cardsData/switchActiveState',
-            payload: {
-                id: id
-            }
-        });
+        if (isActive) dispatch(cardsActions.toggleActiveState({ id: id }));
     };
 
     const headingInputHandler = (event) => setHeadingInputValue(event.target.value);
@@ -39,24 +35,21 @@ const Card = ({
 
     const submitHandler = () => {
         setIsEditMode(false);
-        dispatch({
-            type: 'cardsData/updateCardData',
-            payload: {
-                id: id,
-                newHeading: headingInputValue,
-                newText: textInputValue
-            }
-        });
+        dispatch(cardsActions.updateCardData({
+            id: id,
+            newHeading: headingInputValue,
+            newText: textInputValue
+        }));
     };
 
-    useEffect(() => setIsEditMode(false), [isDisableMode]);
+    useEffect(() => setIsEditMode(false), [isReadOnly]);
 
     return (
         <div className={`container card${isActive ? ' active' : ''}${isEditMode ? ' editmode' : ''}`}
-             id={id} >
+             id={id}>
             <CardHeader id={id}
                         value={isEditMode ? headingInputValue : heading}
-                        isDisableMode={isDisableMode}
+                        isReadOnly={isReadOnly}
                         isActive={isActive}
                         isEditMode={isEditMode}
                         onEdit={editHandler}
@@ -74,7 +67,7 @@ const Card = ({
 
 Card.propTypes = {
     id: PropTypes.string,
-    isDisableMode: PropTypes.bool,
+    isReadOnly: PropTypes.bool,
     isActive: PropTypes.bool,
     heading: PropTypes.string,
     text: PropTypes.string,

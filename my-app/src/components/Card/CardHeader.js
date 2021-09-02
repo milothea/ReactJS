@@ -1,11 +1,12 @@
 import './CardHeader.css';
 import { useDispatch } from 'react-redux';
+import { cardsActions } from '../store/cardsDataSlice';
 import { HiOutlineCheck, HiOutlinePencil, HiOutlineX} from "react-icons/hi";
 
 const CardHeader = ({
                         isActive,
                         isEditMode,
-                        isDisableMode,
+                        isReadOnly,
                         id,
                         value,
                         onEdit,
@@ -14,6 +15,7 @@ const CardHeader = ({
                         onSubmit
                     }) => {
     const dispatch = useDispatch();
+    const changeHandler = () => dispatch(cardsActions.toggleActiveState({ id: id}));
 
     return isEditMode ? (
         <div className='container heading'>
@@ -27,7 +29,7 @@ const CardHeader = ({
     ) : (
         <div className='container heading'>
             <h2 className='card__heading'>{value}</h2>
-            { !isDisableMode ? (
+            { !isReadOnly ? (
                 <HiOutlinePencil className='card__edit'
                                  fill='red'
                                  onClick={onEdit} />
@@ -36,12 +38,7 @@ const CardHeader = ({
             <input className='card__checkbox'
                    type='checkbox'
                    checked={isActive}
-                   onChange={() => dispatch({
-                       type: 'cardsData/switchActiveState',
-                       payload: {
-                           id: id
-                       }
-                   })} />
+                   onChange={changeHandler} />
         </div>
     );
 }

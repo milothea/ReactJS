@@ -1,8 +1,9 @@
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './SignInPage.css';
 import Input from '../Input';
 import useInput from '../../hooks/use-input';
+import { authActions } from '../../store/authSlice';
 
 const SignInPage = () => {
     const dispatch = useDispatch();
@@ -27,12 +28,16 @@ const SignInPage = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        sessionStorage.setItem(usernameValue, passwordValue);
         resetUsername();
         resetPassword();
-        dispatch({
-            type: 'authorization/login'
-        });
+        dispatch(authActions.logIn({
+                username: usernameValue,
+                password: passwordValue
+            }));
+        localStorage.setItem('user', JSON.stringify({
+            username: usernameValue,
+            password: passwordValue
+        }));
         history.replace('/');
     }
 
