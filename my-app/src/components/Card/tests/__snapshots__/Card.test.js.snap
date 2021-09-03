@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component renders correctly in NOT read only mode and NOT active mode 1`] = `
+<div
+  className="container card"
+  id="10"
+>
+  <div
+    className="container heading"
+  >
+    <h2
+      className="card__heading"
+    >
+      some heading
+    </h2>
+    <svg
+      className="card__edit"
+      data-testid="edit-icon"
+      fill="red"
+      height="1em"
+      onClick={[Function]}
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+    <input
+      className="card__checkbox"
+      data-testid="checkbox"
+      defaultChecked={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <p
+    className="card__text"
+    data-testid="paragraph"
+  >
+    some text
+  </p>
+</div>
+`;
+
+exports[`Card component renders correctly in read only mode and NOT active mode 1`] = `
+<div
+  className="container card"
+  id="10"
+>
+  <div
+    className="container heading"
+  >
+    <h2
+      className="card__heading"
+    >
+      some heading
+    </h2>
+    
+    <input
+      className="card__checkbox"
+      data-testid="checkbox"
+      defaultChecked={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <p
+    className="card__text"
+    data-testid="paragraph"
+  >
+    some text
+  </p>
+</div>
+`;
+
+exports[`Card component renders correctly in read only mode and active mode 1`] = `
+<div
+  className="container card active"
+  id="10"
+>
+  <div
+    className="container heading"
+  >
+    <h2
+      className="card__heading"
+    >
+      some heading
+    </h2>
+    
+    <input
+      className="card__checkbox"
+      data-testid="checkbox"
+      defaultChecked={true}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <p
+    className="card__text"
+    data-testid="paragraph"
+  >
+    some text
+  </p>
+</div>
+`;
