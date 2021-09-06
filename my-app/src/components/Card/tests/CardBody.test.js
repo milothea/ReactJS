@@ -38,7 +38,7 @@ describe('CardBody component', () => {
 });
 
 describe('CardBody handlers', () => {
-    it('works when triggered in edit mode', () => {
+    test('works when triggered in edit mode', () => {
         const mockChange = jest.fn();
         const component = shallow(
             <CardBody isEditMode={true}

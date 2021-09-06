@@ -82,7 +82,7 @@ describe('CardHeader component', () => {
 describe('CardHeader handlers', () => {
     const testValue = 'some value';
 
-    it('works when triggered in edit mode', () => {
+    test('works when triggered in edit mode', () => {
             const mockChange = jest.fn();
             const mockSubmit = jest.fn();
             const mockCancel = jest.fn();
@@ -106,7 +106,7 @@ describe('CardHeader handlers', () => {
             expect(mockCancel).toHaveBeenCalled();
     });
 
-    it('works when triggered in NOT edit mode and NOT read only mode', () => {
+    test('works when triggered in NOT edit mode and NOT read only mode', () => {
         const mockEdit = jest.fn();
         const component = shallow(
             <CardHeader isActive={false}
@@ -123,7 +123,7 @@ describe('CardHeader handlers', () => {
         expect(mockEdit).toHaveBeenCalled();
     });
 
-    it('works when triggered in NOT edit mode but read only mode', () => {
+    test('works when triggered in NOT edit mode but read only mode', () => {
         const mockChange = jest.fn();
         const component = shallow(
             <CardHeader isActive={false}
