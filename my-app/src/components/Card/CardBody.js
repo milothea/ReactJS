@@ -6,9 +6,11 @@ const CardBody = ({ value, isEditMode, onChange }) => {
         <textarea className='card__text'
                   value={value}
                   maxLength='140'
-                  onChange={onChange} />
+                  onChange={onChange}
+                  data-testid='textarea' />
     ) : (
-        <p className='card__text'>{value}</p>
+        <p className='card__text'
+           data-testid='paragraph'>{value}</p>
     );
 };
 

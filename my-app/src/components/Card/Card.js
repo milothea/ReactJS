@@ -42,6 +42,8 @@ const Card = ({
         }));
     };
 
+    const changeCheckboxHandler = () => dispatch(cardsActions.toggleActiveState({ id: id}));
+
     useEffect(() => setIsEditMode(false), [isReadOnly]);
 
     return (
@@ -56,6 +58,7 @@ const Card = ({
                         onChange={headingInputHandler}
                         onCancel={cancelHandler}
                         onSubmit={submitHandler}
+                        onChecked={changeCheckboxHandler}
             />
             <CardBody isEditMode={isEditMode}
                       value={isEditMode ? textInputValue : text}
